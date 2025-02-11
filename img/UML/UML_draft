@@ -1,0 +1,69 @@
++===================================================+
+|                 package: core                     |
++===================================================+
+|  <<Abstract Class>> AbstractKnapsackSolver        |
+|---------------------------------------------------|
+| - items: List<Item>                               |
+| - selectedItems: List<Item>                       | <-- To track selected items
+| - capacity: int                                   |
+| - totalValue: int                                 |
+| - knapsackNumber: int                             | <-- ID for knapsack instance
+|---------------------------------------------------|
+| + solve(): void                                   | <-- Abstract function
+| + getResults(): String                            |
+| + getSelectedItems(): List<Item>                  | <-- Retrieve selected items
+| + getTotalValue(): int                            |
+| + getKnapsackCapacity(): int                      |
+| + getKnapsackNumber(): int                        |
++---------------------------------------------------+
+            ^                                ^
+            | inherent                      | inherent
++==============================+   +==============================+
+| package: fractionalknapsack  |   |     package: knapsack01      |
++==============================+   +==============================+
+|  BruteForceFractional        |   |  BruteForce01                |
+|------------------------------|   |------------------------------|
+| + solve(): void              |   | + solve(): void              |
++------------------------------+   +------------------------------+
+
+|  GreedyFractional            |   |  Greedy01                    |
+|------------------------------|   |------------------------------|
+| + solve(): void              |   | + solve(): void              |
++------------------------------+   +------------------------------+
+
+|  DynamicFractional (*)       |   |  DynamicProgramming01        |
+|------------------------------|   |------------------------------|
+| + solve(): void (*)          |   | + solve(): void              |
++------------------------------+   +------------------------------+
+
+
++=============================================+
+|              package: utils                 |
++=============================================+
+|  Item                                       |
+|---------------------------------------------|
+| - weight: int                               |
+| - value: int                                |
+|---------------------------------------------|
+| + getWeight(): int                          |
+| + getValue(): int                           |
+| + getRatio(): double                        |
++---------------------------------------------+
+
+|  CSVReader                                  |
+|---------------------------------------------|
+| + readCSV(String path): List<Item>          |
++---------------------------------------------+
+
+|  CSVWriter                                  |
+|---------------------------------------------|
+| + writeResults(String path, List<Item>,     |
+|   int totalValue, int knapsackNumber,       |
+|   int knapsackCapacity): void               |
++---------------------------------------------+
+
+|  Timer                                      |
+|---------------------------------------------|
+| + start(): void                             |
+| + stop(): long                              |
++---------------------------------------------+
