@@ -6,13 +6,13 @@
 | - items: List<Item>                               |
 | - selectedItems: List<Item>                       | <-- To track selected items
 | - capacity: int                                   |
-| - totalValue: int                                 |
+| - totalValue: double                                 |
 | - knapsackNumber: int                             | <-- ID for knapsack instance
 |---------------------------------------------------|
 | + solve(): void                                   | <-- Abstract function
 | + getResults(): String                            |
 | + getSelectedItems(): List<Item>                  | <-- Retrieve selected items
-| + getTotalValue(): int                            |
+| + getTotalValue(): double                            |
 | + getKnapsackCapacity(): int                      |
 | + getKnapsackNumber(): int                        |
 +---------------------------------------------------+
@@ -42,11 +42,11 @@
 +=============================================+
 |  Item                                       |
 |---------------------------------------------|
-| - weight: int                               |
-| - value: int                                |
+| - weight: double                               |
+| - value: double                                |
 |---------------------------------------------|
-| + getWeight(): int                          |
-| + getValue(): int                           |
+| + getWeight(): double                          |
+| + getValue(): double                           |
 | + getRatio(): double                        |
 +---------------------------------------------+
 
@@ -58,7 +58,7 @@
 |  CSVWriter                                  |
 |---------------------------------------------|
 | + writeResults(String path, List<Item>,     |
-|   int totalValue, int knapsackNumber,       |
+|   double totalValue, int knapsackNumber,       |
 |   int knapsackCapacity): void               |
 +---------------------------------------------+
 

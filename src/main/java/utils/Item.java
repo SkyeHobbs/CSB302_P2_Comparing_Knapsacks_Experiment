@@ -2,24 +2,27 @@ package utils;
 
 /**
  * Item object class
+ * Since the Item class only has integer weights and values, but in the fractional case,
+ * selected items can have double weights and values, we’ll handle this by using only the Item class.
+ * Therefore, we use double for weight and value.
  */
 public class Item {
-  private final int weight;
-  private final int value;
+  private final double weight;
+  private final double value;
 
   /**
    * Constructor initializing the item object
    */
-  public Item(int weight, int value) {
+  public Item(double weight, double value) {
     this.weight = weight;
     this.value = value;
   }
 
-  public int getWeight() {
+  public double getWeight() {
     return weight;
   }
 
-  public int getValue() {
+  public double getValue() {
     return value;
   }
 
