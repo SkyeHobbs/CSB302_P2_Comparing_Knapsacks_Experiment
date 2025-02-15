@@ -1,22 +1,27 @@
-+===================================================+
-|                 package: core                     |
-+===================================================+
-|  <<Abstract Class>> AbstractKnapsackSolver        |
-|---------------------------------------------------|
-| - items: List<Item>                               |
-| - selectedItems: List<Item>                       | <-- To track selected items
-| - capacity: int                                   |
-| - totalValue: double                                 |
-| - knapsackNumber: int                             | <-- ID for knapsack instance
-|---------------------------------------------------|
-| + solve(): void                                   | <-- Abstract function
-| + getResults(): String                            |
-| + getSelectedItems(): List<Item>                  | <-- Retrieve selected items
-| + getTotalValue(): double                            |
-| + getKnapsackCapacity(): int                      |
-| + getKnapsackNumber(): int                        |
-+---------------------------------------------------+
-            ^                                ^
++=============================================================+
+|                 package: core                               |
++=============================================================+
+|  <<Abstract Class>> AbstractKnapsackSolver                  |
+|-------------------------------------------------------------|
+| - selectedItems: Map <Item, SelectWeight: double>           | <-- To track selected
+| - selectedTotalValue: double                                |
+|-------------------------------------------------------------|
+| + solve(): void                                             | <-- Abstract function
+| + getResults(): String                                      |
+| + getSelectedItems(): Map < Item, SelectWeight: double>items|
+| + selectedTotalValue(): double                              |
++-------------------------------------------------------------+
+|                     Knapsack                                |
+|-------------------------------------------------------------|
+| - knapsackNumber: int                                       |<-- ID for knapsack instance
+| - capacity: int                                             |
+| - items: List<Item>                                         |
+|-------------------------------------------------------------|
+| + getKnapsackCapacity(): int                                |
+| + getKnapsackNumber(): int                                  |
++-------------------------------------------------------------+
+
+            ^                               ^
             | inherent                      | inherent
 +==============================+   +==============================+
 | package: fractionalknapsack  |   |     package: knapsack01      |
@@ -42,26 +47,23 @@
 +=============================================+
 |  Item                                       |
 |---------------------------------------------|
-| - weight: double                               |
-| - value: double                                |
+| - weight: int                               |
+| - value: int                                |
 |---------------------------------------------|
-| + getWeight(): double                          |
-| + getValue(): double                           |
+| + getWeight(): int                          |
+| + getValue(): int                           |
 | + getRatio(): double                        |
 +---------------------------------------------+
-
 |  CSVReader                                  |
 |---------------------------------------------|
-| + readCSV(String path): List<Item>          |
+| + readCSV(String path): Knapsack            |
 +---------------------------------------------+
-
 |  CSVWriter                                  |
 |---------------------------------------------|
 | + writeResults(String path, List<Item>,     |
-|   double totalValue, int knapsackNumber,       |
+|   double totalValue, int knapsackNumber,    |
 |   int knapsackCapacity): void               |
 +---------------------------------------------+
-
 |  Timer                                      |
 |---------------------------------------------|
 | + start(): void                             |
