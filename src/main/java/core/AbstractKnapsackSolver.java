@@ -1,7 +1,10 @@
 package core;
 
 import utils.Item;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * AbstractKnapsackSolver serves as the base class for various knapsack solving algorithms
@@ -13,23 +16,18 @@ import java.util.List;
  */
 public abstract class AbstractKnapsackSolver {
 
-  protected List<Item> items; // The list of all items available for the knapsack.
-  protected List<Item> selectedItems; // The list of items selected to be included in the knapsack after solving.
-  protected int capacity; // The maximum weight capacity of the knapsack.
-  protected double totalValue; // The total value of the items selected in the knapsack.
-  protected int knapsackNumber; // The ID for the knapsack instance
+  protected Knapsack knapsack;
+  protected Map<Item, Double> selectedItems; // The map of the key value pair of selected
+  // item and selected weight after solving.
+  protected double selectedTotalValue; // The total value of the items selected in the knapsack.
 
   /**
-   * Constructs an AbstractKnapsackSolver with the given items, capacity, and knapsack number.
+   * Constructs an AbstractKnapsackSolver with the given Knapsack.
    *
-   * @param items          The list of items available for selection.
-   * @param capacity       The maximum weight capacity of the knapsack.
-   * @param knapsackNumber The identifier for the knapsack instance.
+   * @param knapsack The input knapsack instance.
    */
-  public AbstractKnapsackSolver(List<Item> items, int capacity, int knapsackNumber) {
-    this.items = items;
-    this.capacity = capacity;
-    this.knapsackNumber = knapsackNumber;
+  public AbstractKnapsackSolver(Knapsack knapsack) {
+    this.knapsack = knapsack;
   }
 
   /**
@@ -40,57 +38,48 @@ public abstract class AbstractKnapsackSolver {
 
 
   /**
-   * Returns the solution details, including knapsack number, capacity, total value, and selected items.
-   *
-   * @return Solution details as a string.
+   * Prints the details of the selected items in the knapsack,
+   * including item values, selected weights, and total value.
    */
-  public String getResults(){
-    StringBuilder result = new StringBuilder();
-    result.append("Knapsack Number: ").append(knapsackNumber).append("\n");
-    result.append("Knapsack Capacity: ").append(capacity).append("\n");
-    result.append("Total Value: ").append(totalValue).append("\n");
-    result.append("Selected Items (Weight, Value): \n");
-    for (Item item: selectedItems) {
-      result.append(" - (").append(item.getWeight()).append(", ").append(item.getValue()).append(")\n");
+  public void printResult(){
+    List<Integer> values = new ArrayList<>();
+    List<Double> selectedWeights = new ArrayList<>();
+    for (Map.Entry<Item, Double> entry: selectedItems.entrySet()){
+      Item item = entry.getKey();
+      double weight = entry.getValue();
+      values.add(item.getValue());
+      selectedWeights.add(weight);
     }
-    return result.toString();
+
+    StringBuilder result = new StringBuilder();
+    result.append("Knapsack #: ").append(knapsack.getKnapsackNumber()).append("\n");
+    result.append("Knapsack Capacity: ").append(knapsack.getKnapsackCapacity()).append("\n");
+    result.append("Knapsack Values: ").append(values).append("\n");
+    result.append("Knapsack Weights: ").append(selectedWeights).append("\n");
+    result.append("Total Value: ").append(selectedTotalValue).append("\n");
+
+    System.out.println(result);
   }
 
   /** @return List of selected items. */
-  public List<Item> getSelectedItems() {
+  public Map<Item, Double> getSelectedItems() {
     return selectedItems;
   }
 
+
   /** @return Total value of selected items. */
-  public double getTotalValue() {
-    return totalValue;
+  public double getsSelectedTotalValue() {
+    return selectedTotalValue;
   }
 
-  /** @return Knapsack's weight capacity. */
-  public int getKnapsackCapacity() {
-    return capacity;
-  }
-
-  /** @return Knapsack number. */
-  public int getKnapsackNumber() {
-    return knapsackNumber;
-  }
 
   /**
    * Sets the total value of selected items.
    *
    * @param totalValue The total value.
    */
-  protected void setTotalValue(double totalValue) {
-    this.totalValue = totalValue;
+  protected void setSelectedTotalValue(double totalValue) {
+    this.selectedTotalValue = totalValue;
   }
 
-  /**
-   * Sets the list of selected items.
-   *
-   * @param selectedItems The selected items.
-   */
-  protected void setSelectedItems(List<Item> selectedItems) {
-    this.selectedItems = selectedItems;
-  }
 }
