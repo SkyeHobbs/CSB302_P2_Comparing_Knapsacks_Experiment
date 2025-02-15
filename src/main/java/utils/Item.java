@@ -7,22 +7,22 @@ package utils;
  * Therefore, we use double for weight and value.
  */
 public class Item {
-  private final double weight;
-  private final double value;
+  private final int weight;
+  private final int value;
 
   /**
    * Constructor initializing the item object
    */
-  public Item(double weight, double value) {
+  public Item(int weight, int value) {
     this.weight = weight;
     this.value = value;
   }
 
-  public double getWeight() {
+  public int getWeight() {
     return weight;
   }
 
-  public double getValue() {
+  public int getValue() {
     return value;
   }
 
