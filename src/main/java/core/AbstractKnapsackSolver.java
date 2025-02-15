@@ -41,33 +41,36 @@ public abstract class AbstractKnapsackSolver {
    * Prints the details of the selected items in the knapsack,
    * including item values, selected weights, and total value.
    */
-  public void printResult(){
+  public void printResult() {
     List<Integer> values = new ArrayList<>();
     List<Double> selectedWeights = new ArrayList<>();
-    for (Map.Entry<Item, Double> entry: selectedItems.entrySet()){
+    for (Map.Entry<Item, Double> entry : selectedItems.entrySet()) {
       Item item = entry.getKey();
       double weight = entry.getValue();
       values.add(item.getValue());
       selectedWeights.add(weight);
     }
 
-    StringBuilder result = new StringBuilder();
-    result.append("Knapsack #: ").append(knapsack.getKnapsackNumber()).append("\n");
-    result.append("Knapsack Capacity: ").append(knapsack.getKnapsackCapacity()).append("\n");
-    result.append("Knapsack Values: ").append(values).append("\n");
-    result.append("Knapsack Weights: ").append(selectedWeights).append("\n");
-    result.append("Total Value: ").append(selectedTotalValue).append("\n");
+    String result = "Knapsack #: " + knapsack.getKnapsackNumber() + "\n" +
+      "Knapsack Capacity: " + knapsack.getKnapsackCapacity() + "\n" +
+      "Knapsack Values: " + values + "\n" +
+      "Knapsack Weights: " + selectedWeights + "\n" +
+      "Total Value: " + selectedTotalValue + "\n";
 
     System.out.println(result);
   }
 
-  /** @return List of selected items. */
+  /**
+   * @return Map of selected items.
+   */
   public Map<Item, Double> getSelectedItems() {
     return selectedItems;
   }
 
 
-  /** @return Total value of selected items. */
+  /**
+   * @return Total value of selected items.
+   */
   public double getsSelectedTotalValue() {
     return selectedTotalValue;
   }

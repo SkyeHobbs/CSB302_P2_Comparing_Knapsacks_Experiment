@@ -10,22 +10,21 @@ public class Knapsack {
 
   protected final List<Item> items; // The list of all items available for the knapsack.
 
-  public Knapsack(int knapsackNumber, int capacity, List<Item> items){
+  public Knapsack(int knapsackNumber, int capacity, List<Item> items) {
     this.knapsackNumber = knapsackNumber;
     this.capacity = capacity;
     this.items = items;
   }
 
-  public int getKnapsackNumber(){
+  public int getKnapsackNumber() {
     return knapsackNumber;
   }
 
-  public int getKnapsackCapacity(){
+  public int getKnapsackCapacity() {
     return capacity;
   }
 
-  public Item getItems(){
-    return (Item) items;
+  public List<Item> getItems() {
+    return items;
   }
-
 }
