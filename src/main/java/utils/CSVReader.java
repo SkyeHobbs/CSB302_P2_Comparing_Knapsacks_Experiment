@@ -1,5 +1,7 @@
 package utils;
 
+import core.Knapsack;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -15,7 +17,12 @@ public class CSVReader {
   /**
    * The total weight capacity the knapsack can hold
    */
-  private double totalKnapsackCapacity;
+  private int totalKnapsackCapacity;
+
+  /**
+   * The number of this knapsack
+   */
+  private int knapsackNum;
 
   /**
    * Reads an input CSV file and returns a list of Items
@@ -23,7 +30,7 @@ public class CSVReader {
    * @param path CSV file name
    * @return list of Item objects
    */
-  public List<Item> readCSV(String path) {
+  public Knapsack readCSV(String path) {
     List<Item> list = new ArrayList<>();
     Scanner scanner = null;
     try {
@@ -31,7 +38,7 @@ public class CSVReader {
     } catch (FileNotFoundException e) {
       System.err.println("File not found" + path);
       // Return an empty list if file is not found
-      return list;
+      return new Knapsack(0, 0, null);
     }
 
     try {
@@ -39,7 +46,8 @@ public class CSVReader {
       if (scanner.hasNextLine()) {
         String line = scanner.nextLine();
         String[] val = line.split(",");
-        double totalKnapsackCapacity = Double.parseDouble(val[1]);
+        knapsackNum = Integer.parseInt(val[0]);
+        totalKnapsackCapacity = Integer.parseInt(val[1]);
         // Set the total knapsack capacity, so it can be accessed via getter
         setTotalKnapsackCapacity(totalKnapsackCapacity);
       }
@@ -61,10 +69,10 @@ public class CSVReader {
 
           // Loop through the values and weighs to create Items
           for (int i = 0; i < values.length; i++) {
-            double value;
-            double weight;
-            value = Double.parseDouble(values[i]);
-            weight = Double.parseDouble(weights[i]);
+            int value;
+            int weight;
+            value = Integer.parseInt(values[i]);
+            weight = Integer.parseInt(weights[i]);
             Item item = new Item(weight, value);
             // Add Item to the list
             list.add(item);
@@ -80,10 +88,10 @@ public class CSVReader {
       // Make sure scanner is closed
       scanner.close();
     }
-      return list;
+      return new Knapsack(knapsackNum, totalKnapsackCapacity, list);
     }
 
-    private void setTotalKnapsackCapacity(double totalKnapsackCapacity) {
+    private void setTotalKnapsackCapacity(int totalKnapsackCapacity) {
       this.totalKnapsackCapacity = totalKnapsackCapacity;
     }
 

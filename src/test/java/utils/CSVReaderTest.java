@@ -21,7 +21,7 @@ class CSVReaderTest {
     createTestFile(filename, "1,10\n10,20,30\n5,10,15")
     ;
     CSVReader reader = new CSVReader();
-    List<Item> list = reader.readCSV(filename);
+    List<Item> list = reader.readCSV(filename).getItems();
 
     assertNotNull(list);
     assertEquals(3, list.size());
