@@ -5,39 +5,67 @@ import org.junit.jupiter.api.Test;
 import utils.Item;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class AbstractKnapsackSolverTest {
-  private AbstractKnapsackSolver knapsackSolver;
-  private List<Item> items;
+  private Knapsack knapsack;
+  private AbstractKnapsackSolver solver;
 
   @BeforeEach
   void setUp() {
-    items = Arrays.asList(
-      new Item(10, 5), new Item(20, 15),new Item(30, 9));
-    knapsackSolver = new MockKnapsackSolver(items, 30, 1);
+    Item item1 = new Item(13, 26);
+    Item item2 = new Item(5, 15);
+    List<Item> itemList = Arrays.asList(item1, item2);
+
+    knapsack = new Knapsack(1, 10, itemList);
+
+    solver = new DummyKnapsackSolver(knapsack);
+
+    Map<Item, Double> selectedItems = new HashMap<>();
+    selectedItems.put(item1, 5.0);
+    selectedItems.put(item2, 3.0);
+    solver.selectedItems = selectedItems;
+    solver.setSelectedTotalValue(41);
   }
 
   @Test
-  public void testSolve() {
-    knapsackSolver.solve();
-    List<Item> selectedItems = knapsackSolver.getSelectedItems();
-    double totalValue = knapsackSolver.getTotalValue();
-
-    assertEquals(20.0, totalValue, "Total value should be 20.0");
-    assertEquals(2, selectedItems.size(), "Should select 2 items");
+  void testKnapsackInitialization() {
+    assertEquals(1, knapsack.getKnapsackNumber(), "Knapsack number should be 1");
+    assertEquals(10, knapsack.getKnapsackCapacity(), "Knapsack capacity should be 10");
+    assertEquals(2, knapsack.getItems().size(), "Knapsack should contain 2 items");
   }
-  @Test
-  public void testGetResults() {
-    knapsackSolver.solve();
-    String results = knapsackSolver.getResults();
 
-    assertTrue(results.contains("Knapsack Number: 1"));
-    assertTrue(results.contains("Knapsack Capacity: 30"));
-    assertTrue(results.contains("Total Value: 20.0"));
-    assertTrue(results.contains("(10.0, 5.0)"));
-    assertTrue(results.contains("(20.0, 15.0)"));
+  @Test
+  void testGetSelectedItems() {
+    assertNotNull(solver.getSelectedItems(), "Selected items map should not be null");
+    assertEquals(2, solver.getSelectedItems().size(), "Should have selected two items");
+  }
+
+  @Test
+  void testGetSelectedTotalValue() {
+    assertEquals(41, solver.getsSelectedTotalValue(), "Total selected value should be 41");
+  }
+
+  @Test
+  void testPrintResult() {
+    assertDoesNotThrow(() -> solver.printResult(), "printResult() should execute without exceptions");
+  }
+
+  /**
+   * Dummy subclass to test AbstractKnapsackSolver
+   */
+  static class DummyKnapsackSolver extends AbstractKnapsackSolver {
+    public DummyKnapsackSolver(Knapsack knapsack) {
+      super(knapsack);
+    }
+
+    @Override
+    public void solve() {
+      // Dummy implementation for testing
+    }
   }
 }
