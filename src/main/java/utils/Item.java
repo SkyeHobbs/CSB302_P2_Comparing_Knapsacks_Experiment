@@ -7,7 +7,13 @@ package utils;
  * Therefore, we use double for weight and value.
  */
 public class Item {
+  /**
+   * Weight of the item
+   */
   private final int weight;
+  /**
+   * Value of the item
+   */
   private final int value;
 
   /**
@@ -18,15 +24,35 @@ public class Item {
     this.value = value;
   }
 
+  /**
+   * Retrieves the item's weight
+   *
+   * @return weight
+   */
   public int getWeight() {
     return weight;
   }
 
+  /**
+   * Retrieves the item's value
+   *
+   * @return value
+   */
   public int getValue() {
     return value;
   }
 
   public double getRatio() {
     return (double) value / weight;
+  }
+
+  /**
+   * Item's information
+   * 
+   * @return nicely printed string of the item's value and weight
+   */
+  @Override
+  public String toString() {
+    return value + "\n" + weight;
   }
 }
