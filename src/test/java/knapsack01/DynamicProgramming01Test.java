@@ -1,9 +1,12 @@
 package knapsack01;
 import core.AbstractKnapsackSolver;
+import core.Knapsack;
 import org.junit.jupiter.api.Test;
 import utils.Item;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class DynamicProgramming01Test {
@@ -11,9 +14,10 @@ class DynamicProgramming01Test {
   @Test
   void solveEmptyItems() {
     List<Item> itemList = new ArrayList<>();
-    AbstractKnapsackSolver knapsackSolver = new DynamicProgramming01(itemList, 25, 1);
+    Knapsack knapsack = new Knapsack(1, 25, itemList);
+    AbstractKnapsackSolver knapsackSolver = new DynamicProgramming01(knapsack);
     knapsackSolver.solve();
-    assertEquals(0, knapsackSolver.getTotalValue());
+    assertEquals(0, knapsackSolver.getsSelectedTotalValue());
     assertTrue(knapsackSolver.getSelectedItems().isEmpty());
   }
 
@@ -25,9 +29,10 @@ class DynamicProgramming01Test {
     itemList.add(new Item(7, 14));
     itemList.add(new Item(13, 22));
     itemList.add(new Item(16, 122));
-    AbstractKnapsackSolver knapsackSolver = new DynamicProgramming01(itemList, 0, 1);
+    Knapsack knapsack = new Knapsack(1, 0, itemList);
+    AbstractKnapsackSolver knapsackSolver = new DynamicProgramming01(knapsack);
     knapsackSolver.solve();
-    assertEquals(0, knapsackSolver.getTotalValue());
+    assertEquals(0, knapsackSolver.getsSelectedTotalValue());
     assertTrue(knapsackSolver.getSelectedItems().isEmpty());
   }
 
@@ -39,11 +44,12 @@ class DynamicProgramming01Test {
     itemList.add(new Item(7, 14));
     itemList.add(new Item(13, 22));
     itemList.add(new Item(16, 22));
-    AbstractKnapsackSolver knapsackSolver = new DynamicProgramming01(itemList, 25, 1);
+    Knapsack knapsack = new Knapsack(1, 25, itemList);
+    AbstractKnapsackSolver knapsackSolver = new DynamicProgramming01(knapsack);
     knapsackSolver.solve();
-    assertEquals(38, knapsackSolver.getTotalValue());
-    List<Item> selected = knapsackSolver.getSelectedItems();
-    assertEquals(itemList.get(2), selected.getFirst());
-    assertEquals(itemList.get(0), selected.get(1));
+    assertEquals(38, knapsackSolver.getsSelectedTotalValue());
+    Map<Item, Double> selected = knapsackSolver.getSelectedItems();
+    assertTrue(selected.containsKey(itemList.get(2)));
+    assertTrue(selected.containsKey(itemList.get(0)));
   }
 }
