@@ -11,7 +11,6 @@ public class Item {
    * Weight of the item
    */
   private final int weight;
-
   /**
    * Value of the item
    */
@@ -26,18 +25,30 @@ public class Item {
   }
 
   /**
+<<<<<<< HEAD
    * Retrieves items weight
    *
    * @return items weight
+=======
+   * Retrieves the item's weight
+   *
+   * @return weight
+>>>>>>> upstream/main
    */
   public int getWeight() {
     return weight;
   }
 
   /**
+<<<<<<< HEAD
    * Retrieves item's value
    *
    * @return item value
+=======
+   * Retrieves the item's value
+   *
+   * @return value
+>>>>>>> upstream/main
    */
   public int getValue() {
     return value;
@@ -53,9 +64,15 @@ public class Item {
   }
 
   /**
+<<<<<<< HEAD
    * Presents this item's information in a nice and neat way
    *
    * @return A neat display of this item's information
+=======
+   * Item's information
+   * 
+   * @return nicely printed string of the item's value and weight
+>>>>>>> upstream/main
    */
   @Override
   public String toString() {
