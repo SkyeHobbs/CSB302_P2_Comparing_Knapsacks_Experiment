@@ -1,7 +1,8 @@
 package knapsack01;
 
 import core.AbstractKnapsackSolver;
-import java.util.ArrayList;
+import core.Knapsack;
+import java.util.HashMap;
 import java.util.List;
 import utils.Item;
 
@@ -9,16 +10,26 @@ import utils.Item;
  * Solves an 01 knapsack problem with dynamic programming.
  */
 public class DynamicProgramming01 extends AbstractKnapsackSolver {
+
+  /**
+   * The items in the given knapsack.
+   */
+  List<Item> items = knapsack.getItems();
+
+  /**
+   * The capacity of the given knapsack.
+   */
+  int capacity = knapsack.getKnapsackCapacity();
+
   /**
    * Constructs an AbstractKnapsackSolver with the given items, capacity, and knapsack number.
    *
-   * @param items          The list of items available for selection.
-   * @param capacity       The maximum weight capacity of the knapsack.
-   * @param knapsackNumber The identifier for the knapsack instance.
+   * @param knapsack the knapsack to solve.
    */
-  public DynamicProgramming01(List<Item> items, int capacity, int knapsackNumber) {
-    super(items, capacity, knapsackNumber);
-    selectedItems = new ArrayList<>();
+  public DynamicProgramming01(Knapsack knapsack) {
+    super(knapsack);
+    selectedItems = new HashMap<>();
+    selectedTotalValue = 0;
   }
 
   /**
@@ -28,8 +39,8 @@ public class DynamicProgramming01 extends AbstractKnapsackSolver {
   @Override
   public void solve() {
     //Ensure knapsack has capacity and items exist.
-    if (capacity == 0 || items.isEmpty()) {
-      totalValue = 0;
+    if (knapsack.getKnapsackCapacity() == 0 || items.isEmpty()) {
+      selectedTotalValue = 0;
     } else {
       //Create 2d array where each cell represents the solution to sub problems.
       int itemCount = items.size();
@@ -52,12 +63,12 @@ public class DynamicProgramming01 extends AbstractKnapsackSolver {
             //the column minus the current item's weight. Assumes the weight is an integer
             //because this is an 01 knapsack.
             arr[i][j] = Math.max(arr[i - 1][j], items.get(i - 1).getValue()
-                  + arr[i - 1][j - (int) items.get(i - 1).getWeight()]);
+                  + arr[i - 1][j - items.get(i - 1).getWeight()]);
           }
         }
       }
       //Item in the final cell has the total value.
-      totalValue = arr[itemCount][capacity];
+      selectedTotalValue = arr[itemCount][capacity];
       //Add the selected items to arraylist.
       //Start by looking at the final cell.
       int row = itemCount;
@@ -67,10 +78,10 @@ public class DynamicProgramming01 extends AbstractKnapsackSolver {
         //If the cell above has a different value
         if (arr[row][column] != arr[row - 1][column]) {
           //Add the current row's item to the arraylist.
-          selectedItems.add(items.get(row - 1));
+          selectedItems.put(items.get(row - 1), (double) items.get(row - 1).getWeight());
           //Subtract the selected item's weight from the columns.
           //Assumes integer weight because this is an 01 knapsack.
-          column -= (int) items.get(row - 1).getWeight();
+          column -= items.get(row - 1).getWeight();
         }
         //Move up a row.
         row--;
