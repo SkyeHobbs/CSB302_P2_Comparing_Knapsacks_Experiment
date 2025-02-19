@@ -20,7 +20,7 @@ class BruteForce01Test {
     Knapsack knapsack = new Knapsack(1, 25, itemList);
     AbstractKnapsackSolver knapsackSolver = new DynamicProgramming01(knapsack);
     knapsackSolver.solve();
-    assertEquals(0, knapsackSolver.getsSelectedTotalValue());
+    assertEquals(0, knapsackSolver.getSelectedTotalValue());
     assertTrue(knapsackSolver.getSelectedItems().isEmpty());
   }
 
@@ -33,7 +33,7 @@ class BruteForce01Test {
     Knapsack knapsack = new Knapsack(1, 5, items);
     AbstractKnapsackSolver knapsackSolver = new DynamicProgramming01(knapsack);
     knapsackSolver.solve();
-    assertEquals(0, knapsackSolver.getsSelectedTotalValue());
+    assertEquals(0, knapsackSolver.getSelectedTotalValue());
     assertTrue(knapsackSolver.getSelectedItems().isEmpty());
   }
 
@@ -50,7 +50,7 @@ class BruteForce01Test {
     knapsackSolver.solve();
     Map<Item, Double> selectedItems = knapsackSolver.getSelectedItems();
 
-    assertEquals(146, knapsackSolver.getsSelectedTotalValue());
+    assertEquals(146, knapsackSolver.getSelectedTotalValue());
     assertEquals(2, selectedItems.size());
   }
 }
