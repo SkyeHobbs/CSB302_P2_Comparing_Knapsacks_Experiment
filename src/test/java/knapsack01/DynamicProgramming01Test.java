@@ -17,7 +17,7 @@ class DynamicProgramming01Test {
     Knapsack knapsack = new Knapsack(1, 25, itemList);
     AbstractKnapsackSolver knapsackSolver = new DynamicProgramming01(knapsack);
     knapsackSolver.solve();
-    assertEquals(0, knapsackSolver.getsSelectedTotalValue());
+    assertEquals(0, knapsackSolver.getSelectedTotalValue());
     assertTrue(knapsackSolver.getSelectedItems().isEmpty());
   }
 
@@ -32,7 +32,7 @@ class DynamicProgramming01Test {
     Knapsack knapsack = new Knapsack(1, 0, itemList);
     AbstractKnapsackSolver knapsackSolver = new DynamicProgramming01(knapsack);
     knapsackSolver.solve();
-    assertEquals(0, knapsackSolver.getsSelectedTotalValue());
+    assertEquals(0, knapsackSolver.getSelectedTotalValue());
     assertTrue(knapsackSolver.getSelectedItems().isEmpty());
   }
 
@@ -47,7 +47,7 @@ class DynamicProgramming01Test {
     Knapsack knapsack = new Knapsack(1, 25, itemList);
     AbstractKnapsackSolver knapsackSolver = new DynamicProgramming01(knapsack);
     knapsackSolver.solve();
-    assertEquals(38, knapsackSolver.getsSelectedTotalValue());
+    assertEquals(38, knapsackSolver.getSelectedTotalValue());
     Map<Item, Double> selected = knapsackSolver.getSelectedItems();
     assertTrue(selected.containsKey(itemList.get(2)));
     assertTrue(selected.containsKey(itemList.get(0)));

@@ -71,7 +71,7 @@ public abstract class AbstractKnapsackSolver {
   /**
    * @return Total value of selected items.
    */
-  public double getsSelectedTotalValue() {
+  public double getSelectedTotalValue() {
     return selectedTotalValue;
   }
 

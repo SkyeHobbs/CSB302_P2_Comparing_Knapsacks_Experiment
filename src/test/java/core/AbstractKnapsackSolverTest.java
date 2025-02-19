@@ -47,7 +47,7 @@ class AbstractKnapsackSolverTest {
 
   @Test
   void testGetSelectedTotalValue() {
-    assertEquals(41, solver.getsSelectedTotalValue(), "Total selected value should be 41");
+    assertEquals(41, solver.getSelectedTotalValue(), "Total selected value should be 41");
   }
 
   @Test
