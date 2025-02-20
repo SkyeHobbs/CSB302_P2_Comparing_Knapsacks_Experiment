@@ -84,5 +84,4 @@ public abstract class AbstractKnapsackSolver {
   protected void setSelectedTotalValue(double totalValue) {
     this.selectedTotalValue = totalValue;
   }
-
 }
