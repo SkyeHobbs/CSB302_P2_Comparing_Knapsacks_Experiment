@@ -1,5 +1,7 @@
 package utils;
 
+import java.util.Objects;
+
 /**
  * Item object class
  * Since the Item class only has integer weights and values, but in the fractional case,
@@ -25,30 +27,18 @@ public class Item {
   }
 
   /**
-<<<<<<< HEAD
-   * Retrieves items weight
-   *
-   * @return items weight
-=======
    * Retrieves the item's weight
    *
    * @return weight
->>>>>>> upstream/main
    */
   public int getWeight() {
     return weight;
   }
 
   /**
-<<<<<<< HEAD
-   * Retrieves item's value
-   *
-   * @return item value
-=======
    * Retrieves the item's value
    *
    * @return value
->>>>>>> upstream/main
    */
   public int getValue() {
     return value;
@@ -64,18 +54,40 @@ public class Item {
   }
 
   /**
-<<<<<<< HEAD
-   * Presents this item's information in a nice and neat way
+   * Indicates whether some other object is equal to this one
    *
-   * @return A neat display of this item's information
-=======
+   * @param o the object we are comparing to
+   * @return True if the object is the same as the other, false otherwise
+   */
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Item item = (Item) o;
+    return weight == item.weight && value == item.value;
+  }
+
+  /**
+   * Returns a hash code value for this Item
+   *
+   * @return hash code
+   */
+  @Override
+  public int hashCode() {
+    return Objects.hash(weight, value);
+  }
+
+  /**
    * Item's information
    * 
    * @return nicely printed string of the item's value and weight
->>>>>>> upstream/main
    */
   @Override
   public String toString() {
-    return value + "\n" + weight;
+    return value + " " + weight;
   }
 }
