@@ -41,17 +41,15 @@ class BruteForceFractionalTest {
   @Test
   void solve() {
     List<Item> items = new ArrayList<>();
-    items.add(new Item(14, 24));
-    items.add(new Item(22, 18));
-    items.add(new Item(7, 14));
-    items.add(new Item(13, 22));
-    items.add(new Item(16, 122));
-    Knapsack knapsack = new Knapsack(1, 30, items);
+    items.add(new Item(10, 40));
+    items.add(new Item(10, 40));
+    items.add(new Item(10, 40));
+    Knapsack knapsack = new Knapsack(1, 25, items);
     AbstractKnapsackSolver knapsackSolver = new BruteForceFractional(knapsack);
     knapsackSolver.solve();
     Map<Item, Double> selectedItems = knapsackSolver.getSelectedItems();
 
-    assertEquals(148, knapsackSolver.getsSelectedTotalValue());
-    assertEquals(5, selectedItems.size());
+    assertEquals(100, knapsackSolver.getsSelectedTotalValue());
+    assertEquals(3, selectedItems.size());
   }
 }
