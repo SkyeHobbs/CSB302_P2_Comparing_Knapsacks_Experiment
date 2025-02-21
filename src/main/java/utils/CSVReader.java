@@ -91,11 +91,21 @@ public class CSVReader {
       return new Knapsack(knapsackNum, totalKnapsackCapacity, list);
     }
 
+  /**
+   * Sets the weight capacity of the knapsack
+   *
+   * @param totalKnapsackCapacity total weight the knapsack can hold
+   */
     private void setTotalKnapsackCapacity(int totalKnapsackCapacity) {
       this.totalKnapsackCapacity = totalKnapsackCapacity;
     }
 
-    public double getTotalKnapsackCapacity() {
+  /**
+   * Returns the weight capacity of the knapsack
+   * 
+   * @return total weight capacity
+   */
+    public int getTotalKnapsackCapacity() {
       return totalKnapsackCapacity;
     }
   }
