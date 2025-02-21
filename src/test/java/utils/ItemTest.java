@@ -43,4 +43,11 @@ class ItemTest {
     assertEquals(1.0, item2.getRatio(), 0.001);
     assertEquals(10.0, item3.getRatio(), 0.001);
   }
+
+  @Test
+  void testToString() {
+    assertEquals(10 + "\n" + 100, item1.toString());
+    assertEquals(100 + "\n" + 100, item2.toString());
+    assertEquals(100 + "\n" + 10, item3.toString());
+  }
 }
