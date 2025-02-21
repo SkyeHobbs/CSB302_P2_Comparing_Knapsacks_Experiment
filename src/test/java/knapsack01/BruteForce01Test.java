@@ -2,6 +2,7 @@ package knapsack01;
 
 import core.AbstractKnapsackSolver;
 import core.Knapsack;
+import fractionalknapsack.BruteForceFractional;
 import org.junit.jupiter.api.Test;
 import utils.Item;
 
@@ -18,7 +19,7 @@ class BruteForce01Test {
   void solveEmptyItems() {
     List<Item> itemList = new ArrayList<>();
     Knapsack knapsack = new Knapsack(1, 25, itemList);
-    AbstractKnapsackSolver knapsackSolver = new DynamicProgramming01(knapsack);
+    AbstractKnapsackSolver knapsackSolver = new BruteForce01(knapsack);
     knapsackSolver.solve();
     assertEquals(0, knapsackSolver.getSelectedTotalValue());
     assertTrue(knapsackSolver.getSelectedItems().isEmpty());
@@ -31,7 +32,7 @@ class BruteForce01Test {
     items.add(new Item(10, 18));
     items.add(new Item(10, 14));
     Knapsack knapsack = new Knapsack(1, 5, items);
-    AbstractKnapsackSolver knapsackSolver = new DynamicProgramming01(knapsack);
+    AbstractKnapsackSolver knapsackSolver = new BruteForce01(knapsack);
     knapsackSolver.solve();
     assertEquals(0, knapsackSolver.getSelectedTotalValue());
     assertTrue(knapsackSolver.getSelectedItems().isEmpty());
