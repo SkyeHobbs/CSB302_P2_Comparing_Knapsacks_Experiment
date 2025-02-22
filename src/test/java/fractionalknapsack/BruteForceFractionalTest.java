@@ -21,7 +21,7 @@ class BruteForceFractionalTest {
     Knapsack knapsack = new Knapsack(1, 25, itemList);
     AbstractKnapsackSolver knapsackSolver = new BruteForceFractional(knapsack);
     knapsackSolver.solve();
-    assertEquals(0, knapsackSolver.getsSelectedTotalValue());
+    assertEquals(0, knapsackSolver.getSelectedTotalValue());
     assertTrue(knapsackSolver.getSelectedItems().isEmpty());
   }
 
@@ -34,7 +34,7 @@ class BruteForceFractionalTest {
     Knapsack knapsack = new Knapsack(1, 5, items);
     AbstractKnapsackSolver knapsackSolver = new BruteForceFractional(knapsack);
     knapsackSolver.solve();
-    assertEquals(5.0, knapsackSolver.getsSelectedTotalValue());
+    assertEquals(5.0, knapsackSolver.getSelectedTotalValue());
     assertFalse(knapsackSolver.getSelectedItems().isEmpty());
   }
 
@@ -49,7 +49,7 @@ class BruteForceFractionalTest {
     knapsackSolver.solve();
     Map<Item, Double> selectedItems = knapsackSolver.getSelectedItems();
 
-    assertEquals(100, knapsackSolver.getsSelectedTotalValue());
+    assertEquals(100, knapsackSolver.getSelectedTotalValue());
     assertEquals(3, selectedItems.size());
   }
 }
