@@ -42,8 +42,8 @@ class BruteForceFractionalTest {
   void solve() {
     List<Item> items = new ArrayList<>();
     items.add(new Item(10, 40));
-    items.add(new Item(10, 40));
-    items.add(new Item(10, 40));
+    items.add(new Item(5, 40));
+    items.add(new Item(20, 40));
     Knapsack knapsack = new Knapsack(1, 25, items);
     AbstractKnapsackSolver knapsackSolver = new BruteForceFractional(knapsack);
     knapsackSolver.solve();
