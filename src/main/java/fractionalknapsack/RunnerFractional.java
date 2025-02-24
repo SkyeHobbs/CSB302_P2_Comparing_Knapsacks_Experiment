@@ -18,15 +18,15 @@ public class RunnerFractional {
             "data/inputs.csv",
             "data/inputs2.csv",
             "data/inputs3.csv",
-            "inputs_20.csv",
-            "inputs_25.csv",
-            "inputs_30.csv",
+            "data/inputs_20.csv",
+            "data/inputs_25.csv",
+            "data/inputs_30.csv",
     };
 
     public static void runFractionalKnapsack() {
-        System.out.println("======================================================");
-        System.out.println("Running fractional knapsack");
-        System.out.println("======================================================");
+        System.out.println("=============================================================================");
+        System.out.println("        Running fractional knapsack");
+        System.out.println("=============================================================================");
 
         // Separate datasets for each algorithm
         XYSeries bruteForceTimeSeries = new XYSeries("Brute Force Time (ms)");
