@@ -15,6 +15,11 @@
     - Created UML design
     - README.md
     - GreedyFractional.java
+    - AbstractKnapsackSolver.java
+    - Knapsack.java
+    - Runner01.java
+    - RunnerFractional.java
+    - ChartGenerator.java
 
 - **Henry Staiff**
     - Development Manager
@@ -24,11 +29,14 @@
     - Version Control Manager
     - Item.java
     - BruteForce01.java
+    - BruteForceFractional.java
+    - Timer.java
 
 - **Tinisha Davis**
     - Project Manager
     - CONTRIBUTING.md
     - CSVReader.java
     - CSVWriter.java
+    - ChartGenerator.java
 
 Thank you for contributing! 
