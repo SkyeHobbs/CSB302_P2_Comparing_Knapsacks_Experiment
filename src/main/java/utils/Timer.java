@@ -17,14 +17,14 @@ public class Timer {
    * Start timer
    */
   public void start() {
-    time = System.currentTimeMillis();
+    time = System.nanoTime();
   }
 
   /**
    * Stop timer
    */
   public void stop() {
-    time = System.currentTimeMillis() - time;
+    time = (System.nanoTime() - time) / 1_000;
   }
 
   /**
