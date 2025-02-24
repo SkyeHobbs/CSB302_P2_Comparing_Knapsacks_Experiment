@@ -46,8 +46,8 @@ class ItemTest {
 
   @Test
   void testToString() {
-    assertEquals(10 + "\n" + 100, item1.toString());
-    assertEquals(100 + "\n" + 100, item2.toString());
-    assertEquals(100 + "\n" + 10, item3.toString());
+    assertEquals(10 + " " + 100, item1.toString());
+    assertEquals(100 + " " + 100, item2.toString());
+    assertEquals(100 + " " + 10, item3.toString());
   }
 }

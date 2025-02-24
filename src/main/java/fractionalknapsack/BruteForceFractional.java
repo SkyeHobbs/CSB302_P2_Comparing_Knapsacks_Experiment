@@ -5,6 +5,7 @@ import core.Knapsack;
 import utils.Item;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class BruteForceFractional extends AbstractKnapsackSolver {
@@ -54,7 +55,11 @@ public class BruteForceFractional extends AbstractKnapsackSolver {
 
         // If the current item is to heavy skip it
         if (currentItem.getWeight() > capacity) {
-            return fractionalHelper(n, capacity, bestSelection);
+            double fraction = (double) capacity / currentItem.getWeight();
+            bestSelection.put(currentItem, fraction);
+            double result = fraction * currentItem.getValue();
+            memo.put(key, result);
+            return result;
         }
 
         // Create copies of bestSelection to track item inclusion and exclusion
@@ -66,18 +71,19 @@ public class BruteForceFractional extends AbstractKnapsackSolver {
         double exclude = bruteForceFractional(n - 1, capacity, excludeSelection);
 
         // Select the better option
+        double result;
         if (include > exclude) {
             includeSelection.put(currentItem, 1.0);
             bestSelection.clear();
             bestSelection.putAll(includeSelection);
-            memo.put(key, include);
-            return include;
+            result = include;
         } else {
             bestSelection.clear();
             bestSelection.putAll(excludeSelection);
-            memo.put(key, exclude);
-            return exclude;
+            result = exclude;
         }
+        memo.put(key, result);
+        return result;
     }
 
 
@@ -90,43 +96,18 @@ public class BruteForceFractional extends AbstractKnapsackSolver {
      * @return The maximum value.
      */
     private double fractionalHelper(int n, double capacity, Map<Item, Double> bestSelection) {
-        // Ensure there are items and capacity
-        if (n <= 0 || capacity <= 0) {
-            return 0;
+        List<Item> sortedItems = knapsack.getItems().subList(0, n);
+        sortedItems.sort((a, b) -> Double.compare((double)b.getValue() / (double)b.getWeight(), (double)a.getValue() / (double)a.getWeight()));
+        double totalValue = 0.0;
+
+        for (Item item : sortedItems) {
+            if (capacity == 0) break;  // Stop when knapsack is full
+            double weightToTake = Math.min(item.getWeight(), capacity);
+            double fraction = weightToTake / item.getWeight();
+            bestSelection.put(item, fraction);
+            totalValue += fraction * item.getValue();
+            capacity -= weightToTake;
         }
-
-        Item currentItem = knapsack.getItems().get(n - 1);  // Save the current item
-        Map<Item, Double> bestCurrentSelection = new HashMap<>(); // Save the best current selection
-        double bestValue = 0.0; // Save the current total value
-
-        for (int subset = 0; subset < (1 << Math.min(n, 10)); subset++) { // Use bitmasking for faster iteration
-            double totalWeight = 0, totalValue = 0;
-            Map<Item, Double> tempSelection = new HashMap<>(bestSelection);
-
-            for (int j = 0; j < n; j++) {
-                if ((subset & (1 << j)) != 0) {
-                    double fraction = (j + 1) / 10.0; // Apply fractional granularity correctly
-                    double weight = currentItem.getWeight() * fraction;
-                    double value = currentItem.getValue() * fraction;
-
-                    if (totalWeight + weight > capacity) break; // Early stopping to prevent unnecessary loops
-
-                    totalWeight += weight;
-                    totalValue += value;
-                    tempSelection.put(currentItem, fraction);
-                }
-            }
-            // If the total value with the fractional value included is better than the current best value
-            // Add the current item to the current best selection and update the
-            if (totalValue > bestValue) {
-                bestValue = totalValue;
-                bestCurrentSelection = new HashMap<>(tempSelection);
-            }
-        }
-
-        // Update the current best selection
-        bestSelection.clear();
-        bestSelection.putAll(bestCurrentSelection);
-        return bestValue; // Return the best value
+        return totalValue;
     }
 }
