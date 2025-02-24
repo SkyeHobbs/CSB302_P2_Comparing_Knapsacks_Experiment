@@ -52,11 +52,11 @@ public class GreedyFractional extends AbstractKnapsackSolver {
           // If the capacity left is smaller than the item's weight, add the item till fill the
           // capacity
           double fraction = Math.floor((capacity - selectedWeight) / item.getWeight() * 10) / 10.0;
-          fraction = Math.round(fraction * 10) / 10.0; // Set float limitation to 0.1
-          selectedItems.put(item, fraction * item.getWeight());
-          selectedTotalValue += item.getRatio() * (fraction * item.getWeight());
-          selectedWeight += fraction * item.getWeight();
-          break;
+          fraction = Math.min(1.0, Math.max(0.0, fraction)); // Set float limitation to 0.1
+          double selectedWeightFraction = fraction * item.getWeight();
+          selectedItems.put(item, selectedWeightFraction);
+          selectedTotalValue += item.getRatio() * selectedWeightFraction;
+          selectedWeight += selectedWeightFraction;
         }
       }
     }

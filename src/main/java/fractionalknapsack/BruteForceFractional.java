@@ -43,7 +43,7 @@ public class BruteForceFractional extends AbstractKnapsackSolver {
      * @param bestSelection A map to store the best selection of items.
      * @return The maximum value.
      */
-    private double bruteForceFractional(int n, int capacity, Map<Item, Double> bestSelection) {
+    private double bruteForceFractional(int n, double capacity, Map<Item, Double> bestSelection) {
         // Ensure there are items and capacity
         if (n == 0 || capacity == 0) {
             return 0;
@@ -53,37 +53,51 @@ public class BruteForceFractional extends AbstractKnapsackSolver {
 
         Item currentItem = knapsack.getItems().get(n - 1); // Save the current item
 
-        // If the current item is to heavy skip it
-        if (currentItem.getWeight() > capacity) {
-            double fraction = (double) capacity / currentItem.getWeight();
-            bestSelection.put(currentItem, fraction);
-            double result = fraction * currentItem.getValue();
-            memo.put(key, result);
-            return result;
-        }
-
-        // Create copies of bestSelection to track item inclusion and exclusion
-        Map<Item, Double> includeSelection = new HashMap<>(bestSelection);
+        // Case 1: Skip the item
         Map<Item, Double> excludeSelection = new HashMap<>(bestSelection);
-
-        // Save the value if the item is included or excluded
-        double include = currentItem.getValue() + bruteForceFractional(n - 1, capacity - currentItem.getWeight(), includeSelection);
         double exclude = bruteForceFractional(n - 1, capacity, excludeSelection);
 
-        // Select the better option
-        double result;
-        if (include > exclude) {
+        // Case 2: Take full item if it fits
+        double include = 0;
+        Map<Item, Double> includeSelection = new HashMap<>(bestSelection);
+        if (currentItem.getWeight() <= capacity) {
+            include = currentItem.getValue() + bruteForceFractional(n - 1, capacity - currentItem.getWeight(), includeSelection);
             includeSelection.put(currentItem, 1.0);
+        }
+
+        // Case 3: Take fraction of item if it's too heavy
+        double maxFraction = Math.floor(Math.min(1.0, (double) capacity / currentItem.getWeight()) * 10) / 10.0;
+        double maxFractionalValue = 0;
+        Map<Item, Double> maxFractionSelection = new HashMap<>(bestSelection);
+        for (double fraction = 0.1; fraction <= maxFraction; fraction+=0.1) {
+            Map<Item, Double> fractionalSelection = new HashMap<>(bestSelection);
+            fractionalSelection.put(currentItem, fraction);
+            double fractionalValue = fraction * currentItem.getValue() + bruteForceFractional(n - 1, capacity - currentItem.getWeight() * fraction, fractionalSelection);
+            if (fractionalValue > maxFractionalValue) {
+                maxFractionSelection = fractionalSelection;
+                maxFractionalValue = fractionalValue;
+            }
+        }
+
+        // Select the best of the three choices
+        double bestValue;
+        if (include >= exclude && include >= maxFractionalValue) {
             bestSelection.clear();
             bestSelection.putAll(includeSelection);
-            result = include;
+            bestValue = include;
+        } else if (maxFractionalValue >= exclude) {
+            bestSelection.clear();
+            bestSelection.putAll(maxFractionSelection);
+            bestValue = maxFractionalValue;
         } else {
             bestSelection.clear();
             bestSelection.putAll(excludeSelection);
-            result = exclude;
+            bestValue = exclude;
         }
-        memo.put(key, result);
-        return result;
+
+        // Store in memo
+        memo.put(key, bestValue);
+        return bestValue;
     }
 
 

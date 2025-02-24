@@ -51,12 +51,17 @@ class RunnerFractionalTest {
         GreedyFractional greedySolver = new GreedyFractional(testKnapsack);
         BruteForceFractional bruteForceSolver = new BruteForceFractional(testKnapsack);
 
+
         greedySolver.solve();
         bruteForceSolver.solve();
 
         double greedyValue = greedySolver.getSelectedTotalValue();
         double bruteForceValue = bruteForceSolver.getSelectedTotalValue();
+        System.out.println("Greedy algorithm result: " + greedySolver.getSelectedItems());
+        System.out.println("bruteForceValue algorithm result: " + bruteForceSolver.getSelectedItems());
 
+//        assertEquals(greedySolver.getSelectedItems(), bruteForceSolver.getSelectedItems(), "Greedy algorithm should select the best value items");
+//        assertEquals(greedySolver.getSelectedTotalValue(), bruteForceSolver.getSelectedTotalValue(), "Greedy algorithm should select the best value items");
         assertTrue(bruteForceValue >= greedyValue, "Brute force should find an equal or better solution than greedy");
     }
 
