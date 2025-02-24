@@ -49,7 +49,6 @@ class BruteForce01Test {
     Knapsack knapsack = new Knapsack(1, 30, items);
     AbstractKnapsackSolver knapsackSolver = new BruteForce01(knapsack);
     knapsackSolver.solve();
-    Map<Item, Double> selectedItems = knapsackSolver.getSelectedItems();
 
     assertEquals(146, knapsackSolver.getSelectedTotalValue());
     assertEquals(2, knapsackSolver.getSelectedItems().size());
