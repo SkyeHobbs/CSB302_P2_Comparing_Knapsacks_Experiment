@@ -21,5 +21,6 @@ class KnapsackTest {
     assertEquals(1, knapsack.getKnapsackNumber(), "Knapsack number should be 1");
     assertEquals(10, knapsack.getKnapsackCapacity(), "Knapsack capacity should be 10");
     assertEquals(itemList, knapsack.getItems(), "Items list should match the provided list");
+    assertEquals(41, knapsack.getKnapsackValue(), "Total knapsack value should be 41");
   }
 }

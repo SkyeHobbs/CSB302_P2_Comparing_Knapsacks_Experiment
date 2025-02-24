@@ -93,8 +93,8 @@ public class BruteForceFractional extends AbstractKnapsackSolver {
     Map<Item, Double> bestCurrentSelection = new HashMap<>(); // Save the best current selection
     double bestValue = 0.0; // Save the current total value
 
-    for (int i = 0; i <= 100; i++) {
-      double fraction = i / 100.0; // Iterate through each fraction
+    for (int i = 0; i <= 10; i++) {
+      double fraction = i / 10.0; // Iterate through each fraction
 
       // Save the fractional weight and value
       double fractionalWeight = currentItem.getWeight() * fraction;

@@ -54,8 +54,7 @@ public abstract class AbstractKnapsackSolver {
     String result = "Knapsack #: " + knapsack.getKnapsackNumber() + "\n" +
       "Knapsack Capacity: " + knapsack.getKnapsackCapacity() + "\n" +
       "Knapsack Values: " + values + "\n" +
-      "Knapsack Weights: " + selectedWeights + "\n" +
-      "Total Value: " + selectedTotalValue + "\n";
+      "Knapsack Weights: " + selectedWeights + "\n";
 
     System.out.println(result);
   }
