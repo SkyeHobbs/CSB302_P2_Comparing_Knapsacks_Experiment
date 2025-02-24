@@ -15,20 +15,32 @@
     - Created UML design
     - README.md
     - GreedyFractional.java
+    - AbstractKnapsackSolver.java
+    - Knapsack.java
+    - Main.java
+    - ChartGenerator.java
+    - Runner01.java
+    - RunnerFractional.java
 
 - **Henry Staiff**
     - Development Manager
     - DynamicProgramming01.java
+    - DynamicFractional.java
 
 - **Skye Hobbs**
     - Version Control Manager
     - Item.java
     - BruteForce01.java
+    - BruteForceFractional.java
+    - Timer.java
 
 - **Tinisha Davis**
     - Project Manager
     - CONTRIBUTING.md
     - CSVReader.java
     - CSVWriter.java
+    - Item.java
+    - Greedy01.java
+    - KnapsackDataGenerator.java
 
 Thank you for contributing! 
