@@ -17,10 +17,10 @@
     - GreedyFractional.java
     - AbstractKnapsackSolver.java
     - Knapsack.java
-    - Main.java
-    - ChartGenerator.java
     - Runner01.java
     - RunnerFractional.java
+    - ChartGenerator.java
+    - Main.java
 
 - **Henry Staiff**
     - Development Manager
@@ -39,6 +39,7 @@
     - CONTRIBUTING.md
     - CSVReader.java
     - CSVWriter.java
+    - ChartGenerator.java
     - Item.java
     - Greedy01.java
     - KnapsackDataGenerator.java
