@@ -1,11 +1,13 @@
 package utils;
 
-import java.awt.*;
+import java.awt.Color;
 import java.awt.geom.Ellipse2D;
 import java.io.File;
 import java.io.IOException;
-import org.jfree.chart.*;
-import org.jfree.chart.plot.*;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.xy.XYSeries;
@@ -18,17 +20,17 @@ public class ChartGenerator {
    * Generates a scatter plot (dot plot) with larger dots for execution time.
    *
    * @param title Chart title
-   * @param xLabel X-axis label
-   * @param yLabel Y-axis label
+   * @param xlabel X-axis label
+   * @param ylabel Y-axis label
    * @param dataset Dataset (XYSeriesCollection)
    * @param fileName Output filename
    */
   public static void exportScatterChart(
-      String title, String xLabel, String yLabel, XYSeries dataset, String fileName) {
+      String title, String xlabel, String ylabel, XYSeries dataset, String fileName) {
     XYSeriesCollection collection = new XYSeriesCollection();
     collection.addSeries(dataset);
 
-    JFreeChart chart = ChartFactory.createScatterPlot(title, xLabel, yLabel, collection);
+    JFreeChart chart = ChartFactory.createScatterPlot(title, xlabel, ylabel, collection);
     XYPlot plot = chart.getXYPlot();
 
     // Use XYLineAndShapeRenderer for larger dots
@@ -44,14 +46,14 @@ public class ChartGenerator {
    * Generates a scatter plot for multiple series with increased dot size.
    *
    * @param title Chart title
-   * @param xLabel X-axis label
-   * @param yLabel Y-axis label
+   * @param xlabel X-axis label
+   * @param ylabel Y-axis label
    * @param dataset XYSeriesCollection
    * @param fileName Output filename
    */
   public static void exportScatterChart(
-      String title, String xLabel, String yLabel, XYSeriesCollection dataset, String fileName) {
-    JFreeChart chart = ChartFactory.createScatterPlot(title, xLabel, yLabel, dataset);
+      String title, String xlabel, String ylabel, XYSeriesCollection dataset, String fileName) {
+    JFreeChart chart = ChartFactory.createScatterPlot(title, xlabel, ylabel, dataset);
     XYPlot plot = chart.getXYPlot();
 
     // Use XYLineAndShapeRenderer for larger dots
@@ -69,14 +71,14 @@ public class ChartGenerator {
    * Generates a bar chart for profit values.
    *
    * @param title Chart title
-   * @param xLabel X-axis label
-   * @param yLabel Y-axis label
+   * @param xlabel X-axis label
+   * @param ylabel Y-axis label
    * @param dataset Dataset (DefaultCategoryDataset)
    * @param fileName Output filename
    */
   public static void exportBarChart(
-      String title, String xLabel, String yLabel, DefaultCategoryDataset dataset, String fileName) {
-    JFreeChart chart = ChartFactory.createBarChart(title, xLabel, yLabel, dataset);
+      String title, String xlabel, String ylabel, DefaultCategoryDataset dataset, String fileName) {
+    JFreeChart chart = ChartFactory.createBarChart(title, xlabel, ylabel, dataset);
     saveChart(chart, fileName);
   }
 
