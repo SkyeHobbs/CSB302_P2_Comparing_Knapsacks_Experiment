@@ -4,8 +4,8 @@ import core.Knapsack;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
-import utils.CSVReader;
 import utils.ChartGenerator;
+import utils.CsvReader;
 import utils.Timer;
 
 /**
@@ -42,11 +42,11 @@ public class Runner01 {
     DefaultCategoryDataset greedyProfitDataset = new DefaultCategoryDataset();
     DefaultCategoryDataset overallProfitDataset = new DefaultCategoryDataset();
 
-    CSVReader csvReader = new CSVReader();
+    CsvReader csvReader = new CsvReader();
 
     for (String filePath : INPUT_FILES) {
       System.out.println("Reading file: " + filePath);
-      Knapsack knapsack = csvReader.readCSV(filePath);
+      Knapsack knapsack = csvReader.readCsv(filePath);
 
       int numOfItems = knapsack.getItems().size(); // X-Axis should be the number of items
       int capacity = knapsack.getKnapsackCapacity();

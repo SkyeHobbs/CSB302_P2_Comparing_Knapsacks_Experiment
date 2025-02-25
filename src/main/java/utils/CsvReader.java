@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /** CSVReader class that reads an input CSV file and returns a list of Items. */
-public class CSVReader {
+public class CsvReader {
 
   /** The total weight capacity the knapsack can hold. */
   private int totalKnapsackCapacity;
@@ -22,7 +22,7 @@ public class CSVReader {
    * @param path CSV file name
    * @return list of Item objects
    */
-  public Knapsack readCSV(String path) {
+  public Knapsack readCsv(String path) {
     List<Item> list = new ArrayList<>();
     Scanner scanner = null;
     try {

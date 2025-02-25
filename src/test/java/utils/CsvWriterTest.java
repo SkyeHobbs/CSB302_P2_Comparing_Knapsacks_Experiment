@@ -1,19 +1,17 @@
 package utils;
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CSVWriterTest {
+class CsvWriterTest {
 
-  private static CSVWriter writer;
+  private static CsvWriter writer;
   private static String name;
   private static int total;
   private static int num;
@@ -32,7 +30,7 @@ class CSVWriterTest {
     num = 1;
     cap = 80;
 
-    writer = new CSVWriter(name);
+    writer = new CsvWriter(name);
   }
 
   @Test

@@ -38,7 +38,7 @@ public class KnapsackDataGenerator {
 
     //Write CSV file
     try {
-      CSVWriter writer = new CSVWriter(filename);
+      CsvWriter writer = new CsvWriter(filename);
       writer.writeInputFile(items, knapsackNumber, capacity);
     } catch (RuntimeException e) {
       throw new RuntimeException(e);

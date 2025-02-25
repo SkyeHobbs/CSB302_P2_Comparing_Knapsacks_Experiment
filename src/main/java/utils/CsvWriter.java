@@ -4,13 +4,12 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * CSV Writer creates csv files for results and for inputs.
  */
-public class CSVWriter {
+public class CsvWriter {
   /**
    * The name of the CSV file.
    */
@@ -21,7 +20,7 @@ public class CSVWriter {
    *
    * @param path name of the CSV file
    */
-  public CSVWriter(String path) {
+  public CsvWriter(String path) {
     setPath(path);
   }
 
