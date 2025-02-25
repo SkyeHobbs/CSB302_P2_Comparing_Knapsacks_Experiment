@@ -1,14 +1,12 @@
-package knapsack01;
+package knapsackzeroone;
 
 import core.AbstractKnapsackSolver;
 import core.Knapsack;
-import fractionalknapsack.BruteForceFractional;
 import org.junit.jupiter.api.Test;
 import utils.Item;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;

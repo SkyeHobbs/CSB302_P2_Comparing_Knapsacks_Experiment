@@ -2,12 +2,14 @@ package fractionalknapsack;
 
 import core.AbstractKnapsackSolver;
 import core.Knapsack;
-import utils.Item;
-
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import utils.Item;
 
+/**
+ * Greedy algorithm for fractional knapsacks.
+ */
 public class GreedyFractional extends AbstractKnapsackSolver {
   List<Item> items = knapsack.getItems();
   int capacity = knapsack.getKnapsackCapacity();

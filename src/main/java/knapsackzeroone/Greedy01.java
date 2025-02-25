@@ -1,33 +1,26 @@
-package knapsack01;
+package knapsackzeroone;
 
 import core.AbstractKnapsackSolver;
 import core.Knapsack;
+import java.util.HashMap;
+import java.util.List;
 import utils.Item;
 
-import java.util.*;
 
-/**
- * Performs the Greedy algorithm on an 01 knapsack problem
- */
+/** Performs the Greedy algorithm on an 01 knapsack problem. */
 public class Greedy01 extends AbstractKnapsackSolver {
 
-  /**
-   * Number of the knapsack instance
-   */
+  /** Number of the knapsack instance. */
   private int knapsackNum;
 
-  /**
-   * List of items
-   */
+  /** List of items. */
   private List<Item> items;
 
-  /**
-   * Total weight capacity of knapsack
-   */
+  /** Total weight capacity of knapsack. */
   private int capacity;
 
   /**
-   * Creates a Greedy01 object
+   * Creates a Greedy01 object.
    *
    * @param knapsack the knapsack we want to perform the algorithm on
    */
@@ -41,7 +34,7 @@ public class Greedy01 extends AbstractKnapsackSolver {
   }
 
   /**
-   * Sorts a list of Items into descending order
+   * Sorts a list of Items into descending order.
    *
    * @param items List of Item objects
    * @return sorted list of Items
@@ -53,10 +46,7 @@ public class Greedy01 extends AbstractKnapsackSolver {
     return items;
   }
 
-  /**
-   * Solves the knapsack problem.
-   * Subclasses must implement this method.
-   */
+  /** Solves the knapsack problem. Subclasses must implement this method. */
   @Override
   public void solve() {
 
@@ -71,11 +61,10 @@ public class Greedy01 extends AbstractKnapsackSolver {
 
     for (Item item : sortedItems) {
       if (selectedWeight + item.getWeight() <= capacity) {
-          selectedItems.put(item, (double) item.getWeight());
-          selectedWeight += item.getWeight();
-          selectedTotalValue += item.getValue();
-
-        }
+        selectedItems.put(item, (double) item.getWeight());
+        selectedWeight += item.getWeight();
+        selectedTotalValue += item.getValue();
       }
     }
   }
+}

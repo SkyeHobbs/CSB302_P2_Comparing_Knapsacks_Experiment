@@ -1,14 +1,13 @@
-package knapsack01;
+package knapsackzeroone;
 
 import core.AbstractKnapsackSolver;
 import core.Knapsack;
-import utils.Item;
-
 import java.util.HashMap;
 import java.util.Map;
+import utils.Item;
 
 /**
- * Solves an 01 knapsack problem with brute force
+ * Solves an 01 knapsack problem with brute force.
  */
 public class BruteForce01 extends AbstractKnapsackSolver {
   /**
@@ -29,7 +28,8 @@ public class BruteForce01 extends AbstractKnapsackSolver {
   @Override
   public void solve() {
     Map<Item, Double> bestSelection = new HashMap<>();
-    double bestValue = bruteForce01(knapsack.getItems().size(), knapsack.getKnapsackCapacity(), bestSelection);
+    double bestValue = bruteForce01(knapsack.getItems().size(),
+            knapsack.getKnapsackCapacity(), bestSelection);
     selectedItems.putAll(bestSelection);
     setSelectedTotalValue(bestValue);
   }
@@ -60,7 +60,8 @@ public class BruteForce01 extends AbstractKnapsackSolver {
     Map<Item, Double> excludeSelection = new HashMap<>(bestSelection);
 
     // Save the value if the item is included or excluded
-    double include = currentItem.getValue() + bruteForce01(n - 1, capacity - currentItem.getWeight(), includeSelection);
+    double include = currentItem.getValue() + bruteForce01(n - 1,
+            capacity - currentItem.getWeight(), includeSelection);
     double exclude = bruteForce01(n - 1, capacity, excludeSelection);
 
     // Select the better option

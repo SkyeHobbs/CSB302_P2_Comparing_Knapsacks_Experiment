@@ -1,4 +1,4 @@
-package knapsack01;
+package knapsackzeroone;
 
 import core.AbstractKnapsackSolver;
 import core.Knapsack;

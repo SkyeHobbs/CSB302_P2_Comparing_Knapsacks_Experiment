@@ -1,14 +1,21 @@
 package utils;
 
-import core.AbstractKnapsackSolver;
-import core.Knapsack;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Generates knapsack data.
+ */
 public class KnapsackDataGenerator {
 
+  /**
+   * Generates knapsack data from a given file with a
+   * specified number of items.
+   *
+   * @param filename The name of the file.
+   * @param numItems The number of items.
+   */
   public static void generate(String filename, int numItems) {
     Random random = new Random();
     List<Item> items = new ArrayList<>();
