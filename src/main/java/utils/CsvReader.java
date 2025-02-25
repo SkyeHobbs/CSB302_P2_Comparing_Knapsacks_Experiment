@@ -1,36 +1,28 @@
 package utils;
 
 import core.Knapsack;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * CSVReader class that reads an input CSV file and
- * returns a list of Items
- */
-public class CSVReader {
+/** CSVReader class that reads an input CSV file and returns a list of Items. */
+public class CsvReader {
 
-  /**
-   * The total weight capacity the knapsack can hold
-   */
+  /** The total weight capacity the knapsack can hold. */
   private int totalKnapsackCapacity;
 
-  /**
-   * The number of this knapsack
-   */
+  /** The number of this knapsack. */
   private int knapsackNum;
 
   /**
-   * Reads an input CSV file and returns a list of Items
+   * Reads an input CSV file and returns a list of Items.
    *
    * @param path CSV file name
    * @return list of Item objects
    */
-  public Knapsack readCSV(String path) {
+  public Knapsack readCsv(String path) {
     List<Item> list = new ArrayList<>();
     Scanner scanner = null;
     try {
@@ -88,24 +80,24 @@ public class CSVReader {
       // Make sure scanner is closed
       scanner.close();
     }
-      return new Knapsack(knapsackNum, totalKnapsackCapacity, list);
-    }
+    return new Knapsack(knapsackNum, totalKnapsackCapacity, list);
+  }
 
   /**
-   * Sets the weight capacity of the knapsack
+   * Sets the weight capacity of the knapsack.
    *
    * @param totalKnapsackCapacity total weight the knapsack can hold
    */
-    private void setTotalKnapsackCapacity(int totalKnapsackCapacity) {
-      this.totalKnapsackCapacity = totalKnapsackCapacity;
-    }
+  private void setTotalKnapsackCapacity(int totalKnapsackCapacity) {
+    this.totalKnapsackCapacity = totalKnapsackCapacity;
+  }
 
   /**
-   * Returns the weight capacity of the knapsack
-   * 
+   * Returns the weight capacity of the knapsack.
+   *
    * @return total weight capacity
    */
-    public int getTotalKnapsackCapacity() {
-      return totalKnapsackCapacity;
-    }
+  public int getTotalKnapsackCapacity() {
+    return totalKnapsackCapacity;
   }
+}

@@ -2,8 +2,6 @@ package fractionalknapsack;
 
 import core.AbstractKnapsackSolver;
 import core.Knapsack;
-import fractionalknapsack.BruteForceFractional;
-import knapsack01.BruteForce01;
 import org.junit.jupiter.api.Test;
 import utils.Item;
 
