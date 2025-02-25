@@ -20,10 +20,12 @@
     - Runner01.java
     - RunnerFractional.java
     - ChartGenerator.java
+    - Main.java
 
 - **Henry Staiff**
     - Development Manager
     - DynamicProgramming01.java
+    - DynamicFractional.java
 
 - **Skye Hobbs**
     - Version Control Manager
@@ -38,5 +40,8 @@
     - CSVReader.java
     - CSVWriter.java
     - ChartGenerator.java
+    - Item.java
+    - Greedy01.java
+    - KnapsackDataGenerator.java
 
 Thank you for contributing! 
