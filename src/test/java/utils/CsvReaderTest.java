@@ -1,6 +1,5 @@
 package utils;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -12,16 +11,16 @@ import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CSVReaderTest {
+class CsvReaderTest {
 
 
   @Test
-  void readCSVWithValidFile() throws IOException {
+  void readCsvWithValidFile() throws IOException {
     String filename = "data/testValid.csv";
     createTestFile(filename, "1,10\n10,20,30\n5,10,15")
     ;
-    CSVReader reader = new CSVReader();
-    List<Item> list = reader.readCSV(filename).getItems();
+    CsvReader reader = new CsvReader();
+    List<Item> list = reader.readCsv(filename).getItems();
 
     assertNotNull(list);
     assertEquals(3, list.size());
@@ -41,7 +40,7 @@ class CSVReaderTest {
   }
 
   @Test
-  void readCSVWithInvalidFile() throws IOException {
+  void readCsvWithInvalidFile() throws IOException {
     String filename = "data/nonexistentTestFile.csv";
 
     assertThrows(FileNotFoundException.class, () -> {
@@ -56,31 +55,31 @@ class CSVReaderTest {
   }
 
   @Test
-  void readCSVInvalidNumberFormat() throws IOException {
+  void readCsvInvalidNumberFormat() throws IOException {
     String filename = "data/invalidFormatTestFile.csv";
     createTestFile(filename,"1,10\na,20,30\n5,10,15");
 
-    CSVReader reader = new CSVReader();
+    CsvReader reader = new CsvReader();
     assertThrows(NumberFormatException.class, () ->
-      reader.readCSV(filename));
+      reader.readCsv(filename));
 
   }
 
   @Test
-  void readCSVUnequalValuesAndWeights() throws IOException {
+  void readCsvUnequalValuesAndWeights() throws IOException {
     String filename = "data/unequalValue.csv";
     createTestFile(filename,"1,10\n20,30\n5,10,15");
 
-    CSVReader reader = new CSVReader();
+    CsvReader reader = new CsvReader();
     assertThrows(IllegalArgumentException.class, () ->
-            reader.readCSV(filename));
+            reader.readCsv(filename));
 
     String filename2 = "data/unequalWeight.csv";
     createTestFile(filename2,"1,10\n10,20,30\n10,15");
 
-    CSVReader reader2 = new CSVReader();
+    CsvReader reader2 = new CsvReader();
     assertThrows(IllegalArgumentException.class, () ->
-            reader2.readCSV(filename2));
+            reader2.readCsv(filename2));
 
 
   }
@@ -90,8 +89,8 @@ class CSVReaderTest {
     String filename = "data/testSetAndGet.csv";
     createTestFile(filename, "1,10\n10,20,30\n5,10,15");
 
-    CSVReader reader = new CSVReader();
-    reader.readCSV(filename);
+    CsvReader reader = new CsvReader();
+    reader.readCsv(filename);
 
     assertEquals(10.0, reader.getTotalKnapsackCapacity());
   }

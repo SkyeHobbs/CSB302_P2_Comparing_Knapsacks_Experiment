@@ -4,29 +4,28 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * CSV Writer creates csv files for results and for inputs
+ * CSV Writer creates csv files for results and for inputs.
  */
-public class CSVWriter {
+public class CsvWriter {
   /**
-   * The name of the CSV file
+   * The name of the CSV file.
    */
   private String path;
 
   /**
-   * Constructor creates a writer
+   * Constructor creates a writer.
    *
    * @param path name of the CSV file
    */
-  public CSVWriter(String path) {
+  public CsvWriter(String path) {
     setPath(path);
   }
 
   /**
-   * Writes results of Comparing Knapsack Experiments
+   * Writes results of Comparing Knapsack Experiments.
    *
    * @param items List of Item's with value's and weight's
    * @param totalValue total value of knapsack item's
@@ -34,7 +33,7 @@ public class CSVWriter {
    * @param knapsackCapacity total weight capacity of the knapsack
    */
   public void writeResults(List<Item> items, double totalValue,
-                           int knapsackNumber, int knapsackCapacity ) {
+                           int knapsackNumber, int knapsackCapacity) {
     File file = new File(path);
 
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
@@ -74,13 +73,13 @@ public class CSVWriter {
   }
 
   /**
-   * Creates an input CSV file for the Comparing Knapsacks Experiment
+   * Creates an input CSV file for the Comparing Knapsacks Experiment.
    *
    * @param items List of Items
    * @param knapsackNumber number of knapsack
    * @param knapsackCapacity total weight capacity of the knapsack
    */
-  public void writeInputFile(List<Item> items, int knapsackNumber, int knapsackCapacity ) {
+  public void writeInputFile(List<Item> items, int knapsackNumber, int knapsackCapacity) {
     File file = new File(path);
 
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
@@ -116,16 +115,16 @@ public class CSVWriter {
   }
 
   /**
-   * Sets the path for the Writer
+   * Sets the path for the Writer.
    *
    * @param path file name
    */
-  private void setPath(String path ) {
+  private void setPath(String path) {
     this.path = path;
   }
 
   /**
-   * Retrieves the path of the Writer
+   * Retrieves the path of the Writer.
    *
    * @return file name
    */
