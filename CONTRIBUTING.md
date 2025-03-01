@@ -39,8 +39,6 @@
     - CONTRIBUTING.md
     - CSVReader.java
     - CSVWriter.java
-    - ChartGenerator.java
-    - Item.java
     - Greedy01.java
     - KnapsackDataGenerator.java
 
